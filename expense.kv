@@ -1,0 +1,149 @@
+<TextInput>:
+    multiline: False
+    write_tab: False
+    font_size: 20
+
+<Label>:
+    font_size: 20
+    color: 0.1, 0.1, 0.1, 1
+
+<PaddingBoxLayout@BoxLayout>:
+    padding: 20
+
+<MainScreen>:
+    bgcolor: 0.9, 0.9 ,0.9 ,1
+    BoxLayout:
+        padding: 10
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: root.bgcolor 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: 2
+
+            PaddingBoxLayout:
+                size_hint_x: 2
+
+                Button:
+                    text: "クリア"
+                    font_size: 32
+                    color: 1, 1, 1, 1
+                    background_color:  (1, 0 ,0 ,1)
+                    on_press: root.clearInput()
+
+            Image:
+                size_hint_x: 6
+                source: "logo.png"
+                allow_stretch: True
+
+            Label:
+                size_hint_x: 2
+                text: root.getYear()
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: 3
+            spacing: 10
+
+            Label:
+                size_hint_y: 1
+                text: ""
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: 4
+                spacing: 10
+
+                PaddingBoxLayout:
+                    size_hint_x: 2
+    
+                    Label:
+                        text: "QRコード"
+                BoxLayout:
+                    size_hint_x: 8
+                    TextInput:
+                        id: input_code
+                        focus: True
+                        on_text_validate: root.enterCode()
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: 4
+                spacing: 10
+
+                PaddingBoxLayout:
+                    size_hint_x: 2
+                    Label:
+                        text: "会員番号"
+
+                BoxLayout:
+                    size_hint_x: 6
+                    Label:
+                        id: member_id
+                        text: ""
+
+                Label:
+                    size_hint_x: 2
+                    text: ""
+  
+
+            Label:
+                size_hint_y: 1
+                text: ""
+
+
+#        BoxLayout:
+#            orientation: "horizontal"
+#            size_hint_y: 2
+#
+#            Label:
+#                size_hint_x: 2
+#                text: ""
+#
+#            Label:
+#                id: barcode
+#                size_hint_x: 6
+#                font_size: 80 #48
+#                text: "" #"b23E5GHKTULMNTZ"
+#                font_name: "JANCODE-nicWabun"
+#
+#            Label:
+#                size_hint_x: 2
+#                text: ""
+
+        PaddingBoxLayout:
+            size_hint_y: 2
+    
+            Label:
+                id: message
+                color: 0, 0, 0, 1
+                font_size: 20
+                text: "ファンクラブカードをかざしてください"
+                
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: 2
+
+            Label:
+                size_hint_x: 2
+                text: ""
+
+            BoxLayout:
+                size_hint_x: 6
+
+                Button:
+                    id: execbtn
+                    text: "実行"
+                    font_size: 32
+                    color: 1, 1, 1, 1
+                    background_color:  (0, 0 ,1 ,1)
+                    on_press: root.sendID()
+                    disabled: True
+
+            Label:
+                size_hint_x: 2
+                text: ""
